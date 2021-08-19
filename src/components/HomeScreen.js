@@ -213,7 +213,7 @@ class HomeScreen extends React.Component {
                                 <th>EnNo</th>
                                 <th>Name</th>
                                 <th>Mode</th>
-                                <th>IoMd</th>
+                                <th>IOMd</th>
                                 <th>DateTime</th>
                                 
                             </tr>

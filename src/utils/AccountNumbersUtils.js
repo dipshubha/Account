@@ -4,7 +4,7 @@ import store from '../store'
 import Config from "./Config";
 import PromisifyFileReader from 'promisify-file-reader';
 
-const db = new Dexie('AccountNumbersDatabase');
+const db = new Dexie('textdatabase');
 db.version(1).stores({
        accountDetails: 'No, Mchn, EnNo, Name, Mode, IoMd, DateTime',
 });
