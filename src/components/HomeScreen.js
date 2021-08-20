@@ -83,6 +83,7 @@ class HomeScreen extends React.Component {
 
     render = () => (
         <Fragment>
+            
             {this.renderHeader()}
             <div>
                 {this.props.accountStatement.show ?
