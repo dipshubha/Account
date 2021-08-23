@@ -11,6 +11,10 @@ import XLSCSVFileTransformer from "../utils/XLSCSVFileTransformer";
 import AccountNumbersUtils from "../utils/AccountNumbersUtils";
 import Utils from "../utils/utils";
 
+import { useHistory } from 'react-router'
+import { Link } from "react-router-dom";
+
+
 class HomeScreen extends React.Component {
 
     
@@ -43,6 +47,8 @@ class HomeScreen extends React.Component {
         }
     }
 
+    
+
     renderHeader = () => {
         return (
             <Fragment>
@@ -62,7 +68,10 @@ class HomeScreen extends React.Component {
                                     <div className="dropdown-menu">
                                         {this.props.accountStatement.allusers && this.props.accountStatement.allusers.length ? <Fragment>
                                             {this.props.accountStatement.show && <a onClick={this.props.showStateToFalse} className="dropdown-item p-0 px-2 pointer mb-1">Select Account Name CSV</a>}
-                                            <a onClick={this.downloadFormatOne} className="dropdown-item p-0 px-2 pointer">Net Banking Sample</a>
+                                            {/* <a onClick={this.downloadFormatOne} className="dropdown-item p-0 px-2 pointer">Edit Employee</a> */}
+                                            {/* <a onClick={} className="dropdown-item p-0 px-2 pointer">Edit Employee</a> */}
+                                            <Link to="/editpage">Edit Employee</Link>
+
                                             <a onClick={this.downloadFormatTwo} className="dropdown-item p-0 px-2 pointer my-1">Card Statement Sample</a>
                                             <a className="dropdown-item p-0 px-2 pointer" data-toggle="modal" data-target="#clearDataModal">Clear All Data</a>
                                         </Fragment> : <a onClick={this.downloadFormatThree} className="dropdown-item p-0 px-2 pointer">Download Format Sample</a>}
@@ -83,7 +92,7 @@ class HomeScreen extends React.Component {
 
     render = () => (
         <Fragment>
-            
+
             {this.renderHeader()}
             <div>
                 {this.props.accountStatement.show ?
@@ -113,7 +122,7 @@ class HomeScreen extends React.Component {
                                 </div>
                                 :
                                 <div>
-                                    
+
                                     <FilePicker
                                         onChange={this.onAccountNameFileSelected}
                                         onError={errMsg => console.log("error occurred " + errMsg)}
@@ -216,14 +225,14 @@ class HomeScreen extends React.Component {
                                 <th>Mode</th>
                                 <th>IOMd</th>
                                 <th>DateTime</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 this.props.accountStatement.allusers.map((account, index) => (
                                     <tr key={index}>
-                                       
+
                                         <td>{account.No}</td>
                                         <td>{account.Mchn}</td>
                                         <td>{account.EnNo}</td>
@@ -291,6 +300,8 @@ const mapDispatchToProps = (dispatch) =>
         onAccountsFetched,
         accDetailsStatus
     }, dispatch);
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
