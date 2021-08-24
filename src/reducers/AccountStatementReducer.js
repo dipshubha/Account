@@ -4,12 +4,13 @@ const INITIAL_STATE = {
     show: false,
     loading: false,
     allusers: [],
+    userNames: [],
     text: ''
 }
 
-export function accountStatementReducer (state = INITIAL_STATE, action) {
+export function accountStatementReducer(state = INITIAL_STATE, action) {
     const { type, payload } = action;
-    switch(type) {
+    switch (type) {
         case 'CLEAR_DATAS':
             return {
                 ...state,
@@ -17,7 +18,7 @@ export function accountStatementReducer (state = INITIAL_STATE, action) {
                 allusers: []
             }
         case 'ACCOUNT_DETAILS_STATUS':
-            switch(payload.type) {
+            switch (payload.type) {
                 case Config.ACCOUNT_DETAILS_COPY_STARTING:
                     return {
                         ...state,
@@ -65,8 +66,8 @@ export function accountStatementReducer (state = INITIAL_STATE, action) {
                         loading: false,
                     }
                 default:
-                    return state    
-            } 
+                    return state
+            }
         case 'ACCOUNT_FILE_SELECTED':
             return {
                 ...state,
@@ -83,8 +84,14 @@ export function accountStatementReducer (state = INITIAL_STATE, action) {
             return {
                 ...state,
                 show: true
-            }                  
+            }
+        case 'ENTER_USER_NAME':
+            console.log("ENTER_USER_NAME ",payload)
+            return {
+                ...state,
+            
+            }
         default:
-            return state    
+            return state
     }
 }

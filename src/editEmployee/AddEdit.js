@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { BsCheck, BsTrashFill, BsPencilSquare, BsPlus } from "react-icons/bs";
+import {  BsTrashFill, BsPencilSquare, BsPlus } from "react-icons/bs";
 
 const getLocalItem = () => {
     const list1 = localStorage.getItem("list1")
@@ -121,21 +121,21 @@ const Todo = () => {
     }, [item1, item2, item3]);
 
     const input = {
-        width:" 100 %",
+        width: " 100 %",
         background: "#F0F0CB",
         color: "black",
         padding: "14px 20px",
-         margin: "20px 3px",
-         border: "2px",
-         
+        margin: "20px 3px",
+        border: "2px",
+
         borderRadius: "12px",
         cursor: "pointer",
-}
-return (
+    }
+    return (
 
         <div className="container" >
-            <div className="sub_main">
-                <h1 style={{ textAlign: "center", marginTop: "1rem", marginBottom: "2rem",fontFamily: "Arial, Helvetica, sans-serif " }}>Edit Employee</h1>
+            {/* <div className="sub_main">
+                <h1 style={{ textAlign: "center", marginTop: "1rem", marginBottom: "2rem", fontFamily: "Arial, Helvetica, sans-serif " }}>Edit Employee</h1>
             </div>
             <div className="">
                 <label>Enter User Name</label>
@@ -145,67 +145,146 @@ return (
                 <label>Enter Company</label>
                 <input style={input} type="text" placeholder="Enter Company" value={inputData3} onChange={(e) => setInputData3(e.target.value)} />
                 {
-                    tog ? <BsPlus onClick={addItem} size="40px"/> : <BsPencilSquare onClick={addItem} size="20px" title="Update Data" />
+                    tog ? <BsPlus onClick={addItem} size="40px" /> : <BsPencilSquare onClick={addItem} size="20px" title="Update Data" />
                 }
 
-            </div>
+            </div> */}
+            {/* hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh */}
             <div>
-                <div className="show_item">
-                    <table className="table">
-                        <thead>
-                            <tr className="table-danger">
-
-                                <th scope="col">User Name </th>
-                                <th scope="col">Full Name</th>
-                                <th scope="col">Company</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-
-                                <td>{
-                                    item1.map((e) => {
-                                        return (
-                                            <div className="each_item" key={e.id}>
-                                                <h5>{e.name}</h5>
+                <div className="container mb-5">
+                    <div className="row">
+                        <div className="col-12 mx-auto text-center">
+                            <h5 className="mb-3">
+                                <strong >Edit Employee</strong>
+                            </h5>
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Enter User Name</th>
+                                        <th>Enter Full Name</th>
+                                        <th>Enter Company</th>
+                                        <th></th>
 
 
-                                            </div>
-                                        )
-                                    })
-                                }</td>
-                                <td>{
-                                    item2.map((e) => {
-                                        return (
-                                            <div className="each_item" key={e.id}>
-                                                <h5>{e.name}</h5>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" value={inputData1} onChange={(e) => setInputData1(e.target.value)} /></td>
+                                        <td><input type="text" value={inputData2} onChange={(e) => setInputData2(e.target.value)} /></td>
+                                        <td><input type="text" value={inputData3} onChange={(e) => setInputData3(e.target.value)}style={{marginLeft:"150px",marginRight:"100px"}} /> {
+                                            tog ? <BsPlus onClick={addItem} size="40px" /> : <BsPencilSquare onClick={addItem} size="20px" title="Update Data" />
+                                        }</td>
+                                       
+                                    </tr>
+                                    {/* value print */}
+                                    <tr>
 
-                                            </div>
-                                        )
-                                    })
-                                }</td>
-                                <td>{
-                                    item3.map((e) => {
-                                        return (
-                                            <div className="each_item" key={e.id}>
-                                                <h5>{e.name}</h5>
-                                                <BsPencilSquare onClick={() => edititem(e.id)} size="20px" />
+
+                                        < td > {
+                                            item1.map((e) => {
+                                                return (
+                                                    <div className="each_item" key={e.id}>
+                                                        <input value={e.name} style={{marginBottom:"20px"}}/>
+
+
+                                                    </div>
+
+                                                )
+                                            })
+
+                                        }</td>
+                                    <td>{
+                                        item2.map((e) => {
+                                            return (
+                                                <div className="each_item" key={e.id}>
+                                                    <input value={e.name} style={{marginBottom:"20px"}}/>
+
+                                                </div>
+                                            )
+                                        })
+                                    }</td>
+                                    <td>{
+                                        item3.map((e) => {
+                                            return (
+                                                <div className="each_item" key={e.id}>
+                                                    <input value={e.name}  style={{marginLeft:"150px",marginRight:"100px",marginBottom:"20px"}}/>
+                                                    <BsPencilSquare onClick={() => edititem(e.id)} size="20px" />
                                                 <BsTrashFill onClick={() => deletitem(e.id)} size="20px" />
-                                            </div>
-                                        )
-                                    })
-                                }   </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
 
+                                                </div>
+                                            )
+                                        })
+                                    } </td>
+                                    {/* <td> <BsPencilSquare onClick={() => edititem(e.id)} size="20px" />
+                                        <BsTrashFill onClick={() => deletitem(e.id)} size="20px" /></td>  */}
+
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                    </div>
                 </div>
             </div>
+
+            {/* hhhhhhhhhhhhhhhhhhhhhhhhhhhhh */}
+            {/* <div className="show_item">
+                <table className="table">
+                    <thead>
+                        <tr className="table-danger">
+
+                            <th scope="col">User Name </th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+
+                            <td>{
+                                item1.map((e) => {
+                                    return (
+                                        <div className="each_item" key={e.id}>
+                                            <h5>{e.name}</h5>
+
+
+                                        </div>
+                                    )
+                                })
+                            }</td>
+                            <td>{
+                                item2.map((e) => {
+                                    return (
+                                        <div className="each_item" key={e.id}>
+                                            <h5>{e.name}</h5>
+
+                                        </div>
+                                    )
+                                })
+                            }</td>
+                            <td>{
+                                item3.map((e) => {
+                                    return (
+                                        <div className="each_item" key={e.id}>
+                                            <h5>{e.name}</h5>
+                                            <BsPencilSquare onClick={() => edititem(e.id)} size="20px" />
+                                            <BsTrashFill onClick={() => deletitem(e.id)} size="20px" />
+                                        </div>
+                                    )
+                                })
+                            }   </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div> */}
         </div>
-    
-)
+        </div >
+
+    )
 }
 
 export default Todo

@@ -26,3 +26,8 @@ export const accDetailsStatus = (data) => ({
     type: 'ACCOUNT_DETAILS_STATUS',
     payload: data
 });
+
+export const enterUserName = (data) => ({
+    type: 'ENTER_USER_NAME',
+    payload: data
+});

@@ -14,7 +14,7 @@ const Login = () => {
         console.log(item.pass)
         if (item.em === admin.email && item.pass===admin.password) {
             console.log("login")
-            history.push("/homescreen")
+            // history.push("/homescreen")
 
         } else {
             console.log("not log in")

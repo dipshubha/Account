@@ -11,16 +11,21 @@ import XLSCSVFileTransformer from "../utils/XLSCSVFileTransformer";
 import AccountNumbersUtils from "../utils/AccountNumbersUtils";
 import Utils from "../utils/utils";
 
+import { BsCheck, BsTrashFill, BsPencilSquare, BsPlus } from "react-icons/bs";
+
+
 import { useHistory } from 'react-router'
 import { Link } from "react-router-dom";
+import { object } from "underscore";
 
 
 class HomeScreen extends React.Component {
 
-    
+
     state = {
         customerId: "Select",
-        file: []
+        file: [],
+        color:"red"
     }
     textInput = createRef()
 
@@ -47,7 +52,7 @@ class HomeScreen extends React.Component {
         }
     }
 
-    
+
 
     renderHeader = () => {
         return (
@@ -68,9 +73,14 @@ class HomeScreen extends React.Component {
                                     <div className="dropdown-menu">
                                         {this.props.accountStatement.allusers && this.props.accountStatement.allusers.length ? <Fragment>
                                             {this.props.accountStatement.show && <a onClick={this.props.showStateToFalse} className="dropdown-item p-0 px-2 pointer mb-1">Select Account Name CSV</a>}
-                                            {/* <a onClick={this.downloadFormatOne} className="dropdown-item p-0 px-2 pointer">Edit Employee</a> */}
+                                          
+                                          {this.props.accountStatement.allusers?(<button style={{background:(this.state.color)}} onMouseOver={()=>this.setState({color:"blue"})}>pranab</button>):null}
+                                            {/* <a onClick={this.logIn} className="dropdown-item p-0 px-2 pointer">Login</a> */}
+                                            {/* <a onClick={this.editPage} className="dropdown-item p-0 px-2 pointer">Edit Employee</a> */}
+
+
                                             {/* <a onClick={} className="dropdown-item p-0 px-2 pointer">Edit Employee</a> */}
-                                            <Link to="/editpage">Edit Employee</Link>
+                                            {/* <Link to="/editpage">Edit Employee</Link> */}
 
                                             <a onClick={this.downloadFormatTwo} className="dropdown-item p-0 px-2 pointer my-1">Card Statement Sample</a>
                                             <a className="dropdown-item p-0 px-2 pointer" data-toggle="modal" data-target="#clearDataModal">Clear All Data</a>
@@ -79,6 +89,7 @@ class HomeScreen extends React.Component {
                                     </div>
                                 </li>
                                 <li><a className="nav-item nav-link pointer" href="mailto:info@rjs.in" target="_blank" >Contact</a></li>
+                                <li><a onClick={this.editPage} className="nav-item nav-link pointer">Edit Employee</a></li>
                             </ul>
                         </div>
                     </div>
@@ -94,7 +105,9 @@ class HomeScreen extends React.Component {
         <Fragment>
 
             {this.renderHeader()}
+
             <div>
+
                 {this.props.accountStatement.show ?
                     <div>
                         <Dropzone
@@ -110,9 +123,11 @@ class HomeScreen extends React.Component {
                                 </section>
                             )}
                         </Dropzone>
-
+                        {/* {this.logIn()} */}
+                        
 
                         {this.getAccountsView()}
+
                     </div> :
                     <div className="container pt-5">
                         <div className="row align-items-center justify-content-center text-center">
@@ -137,7 +152,11 @@ class HomeScreen extends React.Component {
                         </div>
                     </div>
                 }
+                <div>
+                    <button onClick={()=>this.editPage()}>click</button>
+                </div>
             </div>
+
 
             {this.renderClearDialogView()}
 
@@ -209,7 +228,9 @@ class HomeScreen extends React.Component {
     getAccountsView = () => !this.props.accountStatement.allusers.length ?
         null
         :
+        
         <div className="container mb-5">
+            {console.log(window.indexedDB.db)}
             <div className="row">
                 <div className="col-12 mx-auto text-center">
                     <h5 className="mb-3">
@@ -248,6 +269,121 @@ class HomeScreen extends React.Component {
                 </div>
             </div>
         </div>
+
+    editPage = () => {
+        console.log("edit page")
+        return(
+        <Fragment>
+            <input type="text"/>
+            <h1>edit page</h1>
+        </Fragment>
+        )
+    
+// =        return (
+//             <div className="container mb-5">
+//                 <div className="row">
+//                     <div className="col-12 mx-auto text-center">
+//                         <h5 className="mb-3">
+//                             <strong>Edit Employee</strong>
+//                         </h5>
+//                         <table className="table table-striped">
+//                             <thead>
+//                                 <tr>
+//                                     <th>Enter User Name</th>
+//                                     <th>Enter Full Name</th>
+//                                     <th>Enter Company</th>
+//                                     <th></th>
+
+
+//                                 </tr>
+//                             </thead>
+//                             <tbody>
+//                                 <tr>
+//                                     <td><input /></td>
+//                                     <td><input /></td>
+//                                     <td><input /></td>
+//                                     <td><BsPlus /></td>
+//                                 </tr>
+//                                 {/* value print */}
+//                                 <tr>
+//                                     <td><input  value="shubhadip"/></td>
+//                                     <td><input /></td>
+//                                     <td><input /></td>
+//                                     <td>  <BsPencilSquare/> <BsTrashFill /></td>
+//                                 </tr>
+
+
+//                             </tbody>
+//                         </table>
+//                     </div>
+//                 </div>
+//             </div>
+
+//         )
+    }
+       
+
+
+
+    logIn = () => {
+        return (
+            <Fragment>
+
+                <div>
+                    <div style={{ height: "50%", width: "50%", position: "absolute", top: "40%", left: "50%", transform: "translate(-50%,-50%)" }}>
+                        <div className="container">
+                            <div className="row row-cols-2 row-cols-lg-4">
+                                <div class="col">
+                                    <div className=""></div>
+                                </div>
+                                <div className="col">
+                                    <div className="">
+                                        <label>Enter Key</label>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className=""></div>
+                                </div>
+
+                            </div>
+                            <br />
+                            <div className="row row-cols-2 row-cols-lg-4">
+                                <div className="col">
+                                    <div className=""></div>
+                                </div>
+                                <div className="col">
+                                    <div className="">
+                                        <label>Enter Key</label>
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className="">
+                                        <input type="text" style={{ height: "30%", width: "150%" }} />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                    <div className=""></div>
+                                </div>
+
+                            </div>
+                            <div style={{ height: "50%", width: "50%", position: "absolute", top: "40%", left: "50%" }}>
+                                <button>submit</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </Fragment>
+
+        )
+    }
+
+
 
     clearAllData = () => {
         this.props.userDetailsClear()
@@ -300,6 +436,10 @@ const mapDispatchToProps = (dispatch) =>
         onAccountsFetched,
         accDetailsStatus
     }, dispatch);
+
+
+
+
 
 
 
